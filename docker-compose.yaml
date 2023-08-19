@@ -1,7 +1,7 @@
 version: '3'
 services: 
   backend:
-    container_name: backend_container
+    container_name: backend_yolo_container
     build:
       context: backend
       dockerfile: Dockerfile
@@ -14,7 +14,7 @@ services:
       MONGODB_URI: 'mongodb+srv://patweru:12wsx3edc4@cluster0.eubdwv8.mongodb.net/?retryWrites=true&w=majority'
   
   client:
-    container_name: client_container
+    container_name: client_yolo_container
     build:
       context: client
       dockerfile: Dockerfile

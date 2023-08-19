@@ -7,21 +7,17 @@ const config = require('./config')
 
 const productRoute = require('./routes/api/productRoute');
 
+// connecting the database
 
-// define a url to connect to the database
-const MONGODB_URI = process.env.MONGODB_URI || mongodb_url + dbName
-mongoose.connect(MONGODB_URI,{useNewUrlParser: true, useUnifiedTopology: true  } )
-let db = mongoose.connection;
+const MONGODB_URI = process.env.MONGODB_URI || config.mongoURI[app.settings.env]
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true  },(err)=>{
+    if (err) {
+        console.log(err)
+    }else{
+        console.log(`Connected to Database: ${MONGODB_URI}`)
+    }
+});
 
-// Check Connection
-db.once('open', ()=>{
-    console.log('Database connected successfully')
-})
-
-// Check for DB Errors
-db.on('error', (error)=>{
-    console.log(error);
-})
 
 // Initializing express
 const app = express()
